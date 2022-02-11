@@ -1,0 +1,13 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name">The account you provide either is NOT "Admin" or the username/password incorrect, try again!</h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/login_form.js') }}"></script>
+    <form id="login_form" action="/shelter_login" onsubmit="return validateForm()" method="post" required>
+        <div class="container">
+            <pre>   Email: <input type="text" name="email"><br></pre>
+            <pre>Password: <input type="password" name="password"><br></pre>
+            <br>
+            <button type="submit">Log In</button><p>
+        </div>
+    <form>
+{% endblock %}

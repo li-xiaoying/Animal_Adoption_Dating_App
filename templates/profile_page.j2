@@ -1,0 +1,15 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name"> My Profile </h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/profile_form.js') }}"></script>
+    <div class="container">
+        <form id="profile_form" action="/profile/{{ value }}" onsubmit="return validateForm()" method="post" required>
+            <pre>  First name: <input type="text" name="fname" value={{ users[0]['firstName'] }}><br></pre>
+            <pre>   Last name: <input type="text" name="lname" value={{ users[0]['lastName'] }}><br></pre>
+            <pre>Phone number: <input type="text" name="phone" value={{ users[0]['customerPhone'] }}><br></pre>
+            <pre>       Email: <input type="text" name="email" value={{ users[0]['email'] }}><br></pre>
+            <br>
+            <p><input type="submit" value="Save changes" class="input-btn"></p>
+        <form>
+    </div>
+{% endblock %}

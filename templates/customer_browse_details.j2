@@ -1,0 +1,68 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    {% for pet in pets %}
+        <h2 class="page-name">Meet {{ pet.name }}</h2>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type=text/javascript src="{{ url_for('static', filename='/customer_browse_details_form.js') }}"></script>
+
+
+        <br>
+        <div class="adopter-pet-details">
+            <br><br>
+            <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" style="width:80%;" alt="img" class="petsDetails">
+            <br>
+            <h3 class="page-name">About {{ pet.name }}</h3>
+            <h4 class="page-name">{{ pet.breed}} &middot {{ pet.age}} months &middot {{ pet.gender}} &middot {{ pet.size}} size</h4>
+
+
+            <i id="{{ pet.petsID }}" class="like-button {{ 'press' if pet.isLiked }}"></i>
+
+            <p>- {{ pet.name }}
+                {% if pet.goodWithDogs %}
+                    IS
+                {% else %}
+                    is NOT
+                {% endif %}
+                good with other dogs -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.goodWithCats %}
+                    IS
+                {% else %}
+                    is NOT
+                {% endif %}
+                good with cats -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.goodWithKids %}
+                    IS
+                {% else %}
+                    is NOT
+                {% endif %}
+                good with kids -
+            </p>
+            <p>- {{ pet.name }}
+                {% if pet.mustBeLeashed %}
+                    MUST
+                {% else %}
+                    does NOT need to
+                {% endif %}
+                be leashed -
+            </p>
+            <br>
+            <h4 class="page-name">Think about {{ pet.name}} might be a match?</h4>
+            {% if pet.availability == "available" %}
+                <br>
+                <form id="adopter_browse_details_form" action="/browse_details/{{ pet.petsID }}" method="post">
+                    <input type="submit" name="request_to_adopte" class="input-btn" value="Send request to adopt {{ pet.name}}"/>
+                </form>
+                <br>
+            {% elif pet.availability == "pending"%}
+                <p>Someone else is also interested in {{ pet.name}}, you can check back later!</p>
+            {% else %}
+                <p>Sorry, {{ pet.name}} has already been adopted!</p>
+            {% endif %}
+            <br>
+        </div>
+    {% endfor %}
+{% endblock %}

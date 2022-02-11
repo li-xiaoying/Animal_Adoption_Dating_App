@@ -1,0 +1,13 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name"> Find Your Cats Result </h2>
+    {% for cat in cats %}
+        <div class="browse-container">
+            <img src="data:;base64,{{ base64.b64encode(cat.img).decode() }}">
+            <h3 style="color:#404040;">{{ cat['name'] }}</h3>
+            <i id="{{ cat.petsID }}" class="like-button {{ 'press' if cat.isLiked }}"></i>
+            <h3 style="color:#404040;">* {{ cat['availability'] }} *</h3>
+            <button onclick="window.location.href='/browse_details/{{ cat.petsID }}'">View Details</button>
+        </div>
+    {% endfor %}
+{% endblock %}

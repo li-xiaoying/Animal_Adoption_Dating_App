@@ -1,0 +1,18 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    <h3 class="page-name">Welcome back, {{ session['username'] }}! See our newly added pets for adoption!</h3><br>
+    <div class="browse-pets">
+        {% for pet in pets %}
+            <div class="petDiv">
+                <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}" class="newlyPetsImg" style="width:100%;height:100%;border-radius:25px;">
+                <div class="middle">
+                    <a href="/browse_details/{{ pet.petsID}}">{{pet.name}}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="adopter-contact">
+        <pre>    *** For any questions, contact us at: Email - lly_adoption@gmail.com; Phone - 123-456-7890.</pre>
+    </div>
+{% endblock %}

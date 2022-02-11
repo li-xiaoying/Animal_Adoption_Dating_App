@@ -1,0 +1,12 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    <h2 class="page-name">All Your Liked Pets</h2>
+    {% for pet in likePets %}
+        <div class="browse-container">
+            <img src="data:;base64,{{ base64.b64encode(pet.img).decode() }}">
+            <h3 style="color:#404040;">{{ pet.name }}</h3>
+            <h3 style="color:#404040;">* {{ pet.availability }} *</h3>
+            <button onclick="window.location.href='/browse_details/{{ pet.petsID }}'">View Details</button>
+        </div>
+    {% endfor %}
+{% endblock %}

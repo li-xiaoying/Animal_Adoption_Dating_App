@@ -1,0 +1,13 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    {% for adopter in adopters %}
+        <h2 class="page-name">Adopter Profile</h2>
+        <br>
+        <div class="pet-details">
+            <p>- First Name: {{ adopter.firstName }}</p>
+            <p>- Last Name: {{ adopter.lastName }}</p>
+            <p>- Email: {{ adopter.email }}</p>
+            <p>- Phone: {{ adopter.customerPhone }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'layouts/main.j2' %}
+{% block content %}
+    <h2 class="page-name">Messages</h2>
+    <br> 
+    <table>
+        <tr>
+            <th style="width:25%">From</th>
+            <th style="width:25%">Request Pet Id</th>
+            <th style="width:25%">Message Status</th>
+            <th style="width:25%">Actions</th>
+        </tr>
+    </table>
+    <br>
+
+    {% for message in messages %}
+        <table>
+            <tr>
+                <td style="width:25%"><input type='button' name='{{ message.customerEmail }}' value='{{ message.customerEmail }}' onclick="window.location ='/admin_view_adopter/{{ message.customerEmail }}'" class="archive-btn"> </td>
+                <td style="width:25%"><input type='button' name='{{ message.petsID }}' value='{{ message.petsID }}' onclick="window.location ='/admin_view_details/{{ message.petsID }}'" class="archive-btn"></td>
+                <td style="width:25%">{{ message.status }}</td>
+                <td style="width:12.5%">
+                    <form action="/shelter_message" method="post">
+                        <input type="hidden" name="messageID" value="{{ message.adminMsgID }}"/>
+                        <input type="hidden" name="petID" value="{{ message.petsID }}"/>
+                        <input type="submit" name="action_identifier" class="archive-btn" value="Approve">
+                    </form>
+                </td>
+                <td style="width:12.5%">
+                    <form action="/shelter_message" method="post">
+                        <input type="hidden" name="messageID" value="{{ message.adminMsgID }}"/>
+                        <input type="hidden" name="petID" value="{{ message.petsID }}"/>
+                        <input type="submit" name="action_identifier" class="archive-btn" value="Ignore">
+                    </form>
+                </td>
+            </tr>
+        <table>
+        <br>
+    {% endfor %}
+    <br>
+{% endblock %}

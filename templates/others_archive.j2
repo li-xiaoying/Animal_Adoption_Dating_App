@@ -1,0 +1,35 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name"> All Other Pets </h2>
+    <br>
+    <table>
+        <tr>
+            <th style="width:10%">ID</th>
+            <th style="width:10%">Name</th>
+            <th style="width:30%">Image</th>
+            <th style="width:10%">Gender</th>
+            <th style="width:10%">Availability</th>
+            <th style="width:30%">Actions</th>
+        </tr>
+    </table>
+    <br>
+
+    {% for other in others %}
+        <table>
+            <tr>
+                <td style="width:10%">{{ other['petsID'] }}</td>
+                <td style="width:10%">{{ other['name'] }}</td>
+                <td style="width:30%"><img src="data:;base64,{{ base64.b64encode(other.img).decode() }}" width="200" height="120" alt="img"></td>
+                <td style="width:10%">{{ other['gender'] }}</td>
+                <td style="width:10%">{{ other['availability'] }}</td>
+                <td style="width:10%"><input type='button' name='View' value='View' onclick="window.location ='/admin_view_details/{{ other['petsID'] }}'" class="archive-btn"> </td>
+                <td style="width:10%"><input type='button' name='Edit' value='Edit' onclick="window.location ='/admin_update_details/{{ other['petsID'] }}'" class="archive-btn"> </td>
+                <td style="width:10%"><input type='button' name='Delete' value='Delete' onclick="window.location ='admin_delete_other/{{ other['petsID'] }}'" class="archive-btn"> </td>
+            </tr>
+        <table>
+        <br>
+    {% endfor %}
+
+    <p><button onclick="location.href='/admin_new_pets'" class="input-btn">Add new pet</button></p>
+    <br>
+{% endblock %}

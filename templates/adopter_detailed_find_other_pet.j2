@@ -1,0 +1,13 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name"> Find Your Other Pets Result </h2>
+    {% for other in others %}
+        <div class="browse-container">
+            <img src="data:;base64,{{ base64.b64encode(other.img).decode() }}">
+            <h3 style="color:#404040;">{{ other['name'] }}</h3>
+            <i id="{{ other.petsID }}" class="like-button {{ 'press' if other.isLiked }}"></i>
+            <h3 style="color:#404040;">* {{ other['availability'] }} *</h3>
+            <button onclick="window.location.href='/browse_details/{{ other.petsID }}'">View Details</button>
+        </div>
+    {% endfor %}
+{% endblock %}

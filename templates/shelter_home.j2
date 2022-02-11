@@ -1,0 +1,28 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h3 class="page-name">Welcome back, Administrator! Click pictures to manage all pets!</h3>
+    <div class="catDiv">
+        <img src="/static/images/cat1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+        <div class="middle">
+            <a href="/cats_archive">Manage Cats</a>
+        </div>
+    </div>
+
+    <div class="dogDiv">
+        <img src="/static/images/dog1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+        <div class="middle">
+            <a href="/dogs_archive">Manage Dogs</a>
+        </div>
+    </div>
+
+    <div class="otherDiv">
+        <img src="/static/images/other1.jpg" class="landingImg" style="width:100%;border-radius:25px;">
+        <div class="middle">
+            <a href="/others_archive">Manage Other Pets</a>
+        </div>
+    </div>
+
+    <div class="shelter-contact">
+        <pre>    *** For any questions, contact us at: Email - lly_adoption@gmail.com; Phone - 123-456-7890.</pre>
+    </div>
+{% endblock %}

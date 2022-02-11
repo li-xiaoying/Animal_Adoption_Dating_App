@@ -1,0 +1,82 @@
+{% extends 'layouts/main.j2' %}
+{% block content %} 
+    <h2 class="page-name"> Update Pets ({{ dogs[0]['petsID'] }}) Information </h2>
+    <script type=text/javascript src="{{ url_for('static', filename='/admin_update_pets_form.js') }}"></script>
+    <div class="container" style="text-align:left; text-indent:50px;">
+        <form id="admin_update_pets_form" action="/admin_update_details/{{ value }}" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" required>
+            <p>Type: <select name="type">
+                <option value= {{ dogs[0]['type'] }}>current: {{ dogs[0]['type'] }}</option>
+                <option value="dog">dog</option>
+                <option value="cat">cat</option>
+                <option value="others">others</option>
+                <br></select>
+            </p>
+            <p>Breed: <input type="text" name="breed" value="{{ dogs[0]['breed'] }}"><br></p>
+            <p>Name: <input type="text" name="name" value="{{ dogs[0]['name'] }}"><br></p>
+            <p>Age (months): <input type="number" name="age" min="0" value={{ dogs[0]['age'] }}><br></p>
+            <p>Size: <select name="size">
+                <option value= {{ dogs[0]['size'] }}>current: {{ dogs[0]['size'] }}</option>
+                <option value="small">small (0-25 lbs)</option>
+                <option value="medium">medium (26-60 lbs)</option>
+                <option value="large">large (61-100 lbs)</option>
+                <option value="extra large">extra large (101 lbs or more)</option>
+                <br></select>
+            </p>
+            <p>Gender: <select name="gender">
+                <option value= {{ dogs[0]['gender'] }}>current: {{ dogs[0]['gender'] }}</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <br></select>
+            </p>
+            <p>Good with kids: <select name="goodWithKids">
+                {% if dogs[0].goodWithKids %}
+                    <option value= {{ dogs[0]['goodWithKids'] }}>current: yes</option>
+                {% else %}
+                    <option value= {{ dogs[0]['goodWithKids'] }}>current: no</option>
+                {% endif %}
+                <option value="1">yes</option>
+                <option value="0">no</option>
+                <br></select>
+            </p>
+            <p>Good with other dogs: <select name="goodWithDogs">
+                {% if dogs[0].goodWithDogs %}
+                    <option value= {{ dogs[0]['goodWithDogs'] }}>current: yes</option>
+                {% else %}
+                    <option value= {{ dogs[0]['goodWithDogs'] }}>current: no</option>
+                {% endif %}
+                <option value="1">yes</option>
+                <option value="0">no</option>
+                <br></select>
+            </p>
+            <p>Good with other cats: <select name="goodWithCats">
+                {% if dogs[0].goodWithCats %}
+                    <option value= {{ dogs[0]['goodWithCats'] }}>current: yes</option>
+                {% else %}
+                    <option value= {{ dogs[0]['goodWithCats'] }}>current: no</option>
+                {% endif %}
+                <option value="1">yes</option>
+                <option value="0">no</option>
+                <br></select>
+            </p>
+            <p>Must be leashed: <select name="mustBeLeashed">
+                {% if dogs[0].mustBeLeashed %}
+                    <option value= {{ dogs[0]['mustBeLeashed'] }}>current: yes</option>
+                {% else %}
+                    <option value= {{ dogs[0]['mustBeLeashed'] }}>current: no</option>
+                {% endif %}
+                <option value="1">yes</option>
+                <option value="0">no</option>
+                <br></select>
+            </p>
+            <p>Availability: <select name="availability">
+                <option value= {{ dogs[0]['availability'] }}>current: {{ dogs[0]['availability'] }}</option>
+                <option value="available">available</option>
+                <option value="pending">pending</option>
+                <option value="adopted">adopted</option>
+                <br></select>
+            </p>
+            <br>
+            <p><input type="submit" value="Save changes" class="input-btn" style="position:relative; left:80px;"></p>
+        </form>
+    <div>
+{% endblock %}
